@@ -1,0 +1,78 @@
+/* ******************************************************************************** */
+/* ************************************* All Elements ***************************** */
+/* ******************************************************************************** */
+// @font-face {
+//     font-family: RSU_FONT;
+//     src: url(../fonts/RSU_Regular.ttf);
+// }
+
+// @font-face {
+//     font-family: RSU_FONT;
+//     src: url(../fonts/RSU_BOLD.ttf);
+//     font-weight: bold;
+// }
+
+// @font-face { font-family: Delicious; src: url('Delicious-Roman.otf'); } 
+// @font-face { font-family: Delicious; font-weight: bold; src: url('Delicious-Bold.otf');}
+/* ******************************************************************************** */
+/* **************************** Black - White Color ******************************* */
+/* ******************************************************************************** */
+
+$white: #FFFFFF;
+$ghost: #FAFAFA;
+$snow: #F9F9F9;
+$vapor: #F6F6F6;
+$white-smoke: #F5F5F5;
+$silver: #EFEFEF;
+$smoke: #EEEEEE;
+$gainsboro: #DDDDDD;
+$iron: #CCCCCC;
+$base: #AAAAAA;
+$aluminum: #999999;
+$jumbo: #888888;
+$monsoon: #777777;
+$steel: #666666;
+$charcoal: #555555;
+$tuatara: #444444;
+$oil: #333333;
+$jet: #222222;
+$black: #000000;
+
+/* ******************************************************************************** */
+/* ************************************ Flat Color ******************************** */
+/* ******************************************************************************** */
+$sunFlower-color: #f2ca25;
+$orange-color: #f39c12;
+
+$turquoise-color: #1abc9c;
+$greenSea-color: #16a085;
+
+$emerald-color: #2ecc71;
+$nephritis-color: #27ae60;
+
+$alizarin-color: #e74c3c;
+$pomegranate-color: #c0392b;
+
+$carrot-color: #e67e22;
+$pumpkin-color: #d35400;
+
+$clouds-color: #ecf0f1;
+$silver-color: #bec4c8;
+
+$concrete-color: #95a5a6;
+$asbestos-color: #818e8f;
+
+$wetAsphalt-color: #34495e;
+$midnightBlue-color: #2c3e50;
+
+$peterRiver-color: #3498db;
+$belizeHole-color: #2980b9;
+
+$amethyst-color: #9b59b6;
+$wisteria-color: #8e44ad;
+
+// $body-color: scale-color($white, $lightness: -10%);
+// $text-color: $belizeHole-color;
+// $disabled-color: $silver-color;
+// $button-color: $belizeHole-color;
+// $button-hover-color: scale-color($button-color, $lightness: -20%);

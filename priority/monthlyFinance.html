@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>สุขสบายรีสอร์ท</title>
+        <link rel="stylesheet" href="../stylesheets/app.css" />
+        <script src="../bower_components/modernizr/modernizr.js"></script>
+        <!-- Custom -->
+        <link rel="stylesheet" href="../stylesheets/monthlyFinance.css" />
+        <!-- jQuery UI -->
+        <link rel="stylesheet" href="../bower_components/jquery-ui-1.11.4/jquery-ui.min.css">
+        <!-- Font Awesom -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Footer -->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- ************************************** Top Bar ***************************************** -->
+        <div class="contain-to-grid fixed">
+            <nav class="top-bar" data-topbar role="navigation">
+                <ul class="title-area">
+                    <li class="name">
+                        <h1><a>สุขสบายรีสอร์ท</a></h1>
+                    </li>
+                    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                    <li class="toggle-topbar menu-icon"><a href="#"><span>เมนู</span></a></li>
+                </ul>
+                <section class="top-bar-section">
+                    <!-- Right Nav Section -->
+                    <ul class="right">
+                        <li class="divider"></li>
+                        <li><a href="../index.php">จองห้องพัก</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../priority/guestFinder.php">ค้นหาข้อมูลผู้พัก</a></li>
+                        <li class="divider"></li>
+                        <li class="active"><a href="monthlyFinance.html">ตรวจสอบบัญชี</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+        <!-- ********************************* End of Top Bar **************************************** -->
+        <!-- clock -->
+        <div class="panel noBorder" id="clock-panel">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h6><strong><span id="clock-date"></span> &nbsp; <span id="clock-hours"></span>:<span id="clock-min"></span>:<span id="clock-sec"></span></strong></h6>
+                </div>
+            </div>
+        </div>
+        <!-- **************************************** Content **************************************** -->
+        <div class="panel noLeftRightPadding noBottomMargin noBorder">
+            <div class="row collapse">
+                <div class="small-12 columns">
+                    <div class="panel noLeftRightPadding withTransparent">
+                        <div class="row collapse">
+                            <div class="small-12 medium-8 large-7 large-centered columns">
+                                <form id="request-form" data-abide="ajax">
+                                    <fieldset>
+                                        <legend>เลือกเดือนที่ต้องการตรวจสอบบัญชี</legend>
+                                        <div class="row collapse">
+                                            <label for="month-input">เดือน</label>
+                                            <div class="small-7 columns">
+                                                <input type="text" id="month-input" placeholder="คลิกปุ่มด้านขวาเพื่อเลือกเดือน" required />
+                                                <small class="error">กรุณาระบุเดือน</small>
+                                            </div>
+                                            <div class="small-2 columns">
+                                                <a role="button" tabindex="0" id="month-butt" class="button noPadding postfix"><i class="fa fa-calendar"></i></a>
+                                            </div>
+                                            <div class="small-3 columns">
+                                                <button type="submit" class="noBottomMargin postfix" id="searchAccount">ค้นหา &nbsp;<i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-12 columns">
+                                <table class="withTopMargin">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">วันที่</th>
+                                            <th class="text-center">รายการ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="monthlyFinance-outerTable">
+                                        <!-- list will go here -->
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-center">ยังไม่มีผลลัพธ์จากการค้นหา กรุณาทำการค้นหา</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table id="summary-outerTable" style="display: none;">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ************************************ End of Content **************************************** -->
+        <!-- ****************************************** reveals ***************************************** -->
+        <!-- error message -->
+        <div id="error-reveal" class="reveal-modal small" data-reveal aria-labelledby="error-title" aria-hidden="true" role="dialog">
+            <h2 id="error-title" class="withAlertColor"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp; ระบบเกิดข้อผิดพลาด</h2>
+            <p class="lead">กรุณาแจ้งให้ผู้พัฒนาระบบทราบ ( คีตา )</p>
+            <p>กดปุ่ม "รีโหลด" เพื่อโหลดหน้านี้ใหม่ หรือปุ่ม "รายละเอียดข้อผิดพลาด" เพื่อตรวจสอบข้อผิดพลาด</p>
+            <a class="button reloadPage-butt" role="button"><i class="fa fa-refresh fa-lg"></i>&nbsp; รีโหลด</a>
+            <a href="#" data-reveal-id="error-details" class="secondary button">รายละเอียดข้อผิดพลาด</a>
+        </div>
+        <div id="error-details" class="reveal-modal" data-reveal aria-labelledby="error-details" aria-hidden="true" role="dialog">
+            <h2 id="error-details"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp; รายละเอียดข้อผิดพลาด</h2>
+            <p id="error-details-para"></p>
+            <p>กดปุ่ม "รีโหลด" เพื่อโหลดหน้านี้ใหม่</p>
+            <a class="button reloadPage-butt" role="button"><i class="fa fa-refresh fa-lg"></i>&nbsp; รีโหลด</a>
+        </div>
+        <!-- booking not found -->
+        <div id="notFound-reveal" class="reveal-modal small" data-reveal aria-labelledby="bookingNotFound-title" aria-hidden="true" role="dialog">
+            <h2 id="bookingNotFound-title" class="withWarningColor"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp; ไม่พบประวัติการเข้าพัก</h2>
+            <p class="lead">ระบบไม่พบประวัติการเข้าพักในเดือนที่ท่านระบุ</p>
+            <p>กดปิดหน้าต่างแจ้งเตือนนี้เพื่อกลับไปเลือกเดือนอื่น หรือโทรแจ้งคีตาเพื่อให้ตรวจสอบความถูกต้องของข้อมูลอีกครั้ง</p>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+        <!-- ************************************** end of reveals ************************************** -->
+        <div class="spinner-overlay">
+            <div class="spinner"></div>
+        </div>
+        <!-- ************************************** Footer ********************************************** -->
+        <footer class="footer">
+            <div class="row">
+                <div class="large-6 columns">
+                    <i class="fa fa-exclamation-triangle fa-3x" style="color: #e74c3c; margin-bottom: 10px;"></i>
+                    <p style="color: #e74c3c;">ระบบยังอยู่ในระหว่างการพัฒนา<br>กรณีที่ระบบเกิดข้อผิดพลาดกรุณาแจ้งให้ผู้พัฒนาระบบทราบ</p>
+                </div>
+                <div class="large-6 columns">
+                    <h5>ติดต่อสอบถามเกี่ยวกับระบบ หรือแจ้งข้อผิดพลาดได้ที่</h5>
+                    <ul class="footer-links">
+                        <li><p href="#"><i class="fa fa-mobile fa-2x"></i>&nbsp; 081 670 9417 ( คุณตุ๊ )</p></li>
+                        <li><p href="#"><i class="fa fa-mobile fa-2x"></i>&nbsp; +44 74491 68840 ( คุณคีตา )</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row withTopMargin">
+                <div class="small-12 columns">
+                    <i class="fa fa-copyright fa-lg"></i>&nbsp; ระบบแห่งนี้เป็นลิขสิทธิ์ของสุขสบายรีสอร์ท
+                </div>
+            </div>
+        </footer>
+        <!-- ************************************** end of Footer ************************************** -->
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/foundation/js/foundation.min.js"></script>
+        <script src="../js/app.js"></script>
+        <!-- Custom Javascripts -->
+        <script src="../js/global.js"></script>
+        <script src="../js/monthlyFinance/main.js"></script>
+        <script src="../js/monthlyFinance/table.js"></script>
+        <script src="../js/digitalClock.js"></script>
+        <!-- jQuery UI -->
+        <script src="../bower_components/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <!-- FullCalendar -->
+        <script src="../bower_components/moment/min/moment.min.js"></script>
+        <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+        <script src="../bower_components/fullcalendar/dist/lang/th.js"></script>
+    </body>
+</html>

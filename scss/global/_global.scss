@@ -1,0 +1,264 @@
+/* ******************************************************************************** */
+/* ****************************** Background & Shadow ***************************** */
+/* ******************************************************************************** */
+html, body {
+    min-height: 100%;
+    width: 100%;
+}
+
+.withShadow {
+    box-shadow: 1px 1px 1px $jumbo;
+    // with no border
+    border-style: none;
+}
+
+.withTransparent {
+    background-color: transparent;
+    border-style: none;
+}
+
+/* ******************************************************************************** */
+/* ************************************ Font ************************************** */
+/* ******************************************************************************** */
+.withAlertColor {
+    color: $alert-color !important;
+}
+
+.withWarningColor {
+    color: $warning-color !important;
+}
+
+.withSuccessColor {
+    color: $success-color !important;
+}
+
+.withInfoColor {
+    color: $info-color !important;
+}
+
+/* ******************************************************************************** */
+/* ************************************ Border ************************************ */
+/* ******************************************************************************** */
+.noBorder {
+    border: none;
+}
+
+// testing only
+.withBorder {
+    border-style: solid;
+    border-width: $panel-border-size;
+    border-color: red;
+}
+
+.withBottomBorder {
+    border-style: solid;
+    border-width: $panel-border-size;
+    border-color: $oil;
+}
+
+.noLeftRightBorder {
+    border-left: none;
+    border-right: none;
+}
+
+.noLeftBorder {
+    border-left: none;
+}
+
+.noRightBorder {
+    border-right: none;
+}
+
+.noTopBorder {
+    border-bottom: none;
+}
+
+.noBottomBorder {
+    border-bottom: none;
+}
+
+/* ******************************************************************************** */
+/* ************************************ Margin ************************************ */
+/* ******************************************************************************** */
+.noLeftMargin {
+    margin-left: 0 !important;
+}
+
+.noRightMargin {
+    margin-right: 0 !important;
+}
+
+.noTopMargin {
+    margin-top: 0 !important;
+}
+
+.noBottomMargin {
+    margin-bottom: 0 !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.withTopMargin {
+    margin-top: $panel-margin-bottom !important;
+}
+
+.withBottomMargin {
+    margin-bottom: $panel-margin-bottom !important;
+}
+
+/* ******************************************************************************** */
+/* ************************************ Padding *********************************** */
+/* ******************************************************************************** */
+.noLeftPadding {
+    padding-left: 0 !important;
+}
+
+.noRightPadding {
+    padding-right: 0 !important;
+}
+
+.noTopPadding {
+    padding-top: 0 !important;
+}
+
+.noBottomPadding {
+    padding-bottom: 0 !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.noLeftRightPadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.noTopBottomPadding {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* ******************************************************************************** */
+/* ********************************** Datepicker ********************************** */
+/* ******************************************************************************** */
+.ui-datepicker {
+    // solve to ugly overlay
+    z-index: 10 !important;
+}
+
+/************************************************************************************/
+/******************************** Loading Overlay ***********************************/
+/************************************************************************************/
+.spinner-overlay {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /*dim the background*/
+}
+
+.spinner {
+    height: rem-calc(200);
+    width: rem-calc(200);
+    margin: 18% auto 0 auto;
+    position: relative;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite 20near;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border-left: rem-calc(15) solid $midnightBlue-color;
+    border-right: rem-calc(15) solid $midnightBlue-color;
+    border-bottom: rem-calc(15) solid $midnightBlue-color;
+    border-top: rem-calc(15) solid $peterRiver-color;
+    border-radius: 100%;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+
+@-moz-keyframes rotation {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(359deg);
+    }
+}
+
+
+@-o-keyframes rotation {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(359deg);
+    }
+}
+
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+
+/* ******************************************************************************** */
+/* ******************************** Grid Changed ********************************** */
+/* ******************************************************************************** */
+
+@media #{$small-up} {
+    #clock-panel {
+        h6 {
+            text-align: center;
+        }
+    }
+}
+
+@media #{$large-up} {
+    #clock-panel {
+        h6 {
+            text-align: right;
+        }
+    }
+}
+
+/* ******************************************************************************** */
+/* ************************************ Printing ********************************** */
+/* ******************************************************************************** */
+@media print {
+    @page {
+        size: auto; /* auto is the current printer page size */
+        margin: 0mm; /* this affects the margin in the printer settings */
+    }
+
+    tr {
+        th, td {
+            padding: rem-calc(1 2) !important;
+        }
+    }
+}
+
+/************************************************************************************/
+/************************************** Table ***************************************/
+/************************************************************************************/
+
+table {
+    width: 100%;
+}

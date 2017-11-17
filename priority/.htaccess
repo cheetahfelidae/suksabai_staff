@@ -1,0 +1,2 @@
+AuthName "priority"
+AuthUserFile "/home2/cheetah/.htpasswds/public_html/staff/priority/passwd"
