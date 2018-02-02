@@ -108,7 +108,7 @@ function Confirmation() {
         if ( sumExtraBedPrice > 0 ) {
             $( '#sumExtraBedPrice-receipt' ).html( 'ราคารวมเตียงเสริม : ฿' + sumExtraBedPrice );
         }
-        $( '#total-receipt' ).html( 'ราคารวมสุทธิ : ฿' + ( sumRoomPrice + sumExtraBedPrice ) );
+        $( '#total-receipt' ).html( 'ราคารวมสุทธิ : ฿' + ( sumRoomPrice + sumBreakfastPrice + sumExtraBedPrice) );
         $( '#checkInDate-receipt' ).html( '14:00 &nbsp; ' + $( '#arriv-input' ).val() );
         $( '#checkOutDate-receipt' ).html( '12:00 &nbsp; ' + $( '#depar-input' ).val() );
     };
