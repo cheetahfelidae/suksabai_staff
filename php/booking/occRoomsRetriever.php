@@ -6,7 +6,7 @@ connDB();
 $dates = json_decode(file_get_contents('php://input'), true);
 
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $mysqli->prepare("SELECT roomNum, stayDate FROM Bookings WHERE stayDate >= ? AND stayDate <= ? ORDER BY stayDate, roomNum"))) {
+if (!($stmt = $mysqli->prepare("SELECT roomNum, stayDate, addDate FROM Bookings WHERE stayDate >= ? AND stayDate <= ? ORDER BY stayDate, roomNum"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
@@ -24,7 +24,8 @@ if (!$stmt->execute()) {
 
 $out_num = NULL;
 $out_stayDate = NULL;
-if (!$stmt->bind_result($out_num, $out_stayDate)) {
+$out_addDate = NULL;
+if (!$stmt->bind_result($out_num, $out_stayDate, $out_addDate)) {
     echo "Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 
@@ -32,13 +33,14 @@ $temp = array();
 
 // get results and convert to fullcalendar format
 while ($stmt->fetch()) {
-    array_push($temp, array('title' => "ห้อง " . $out_num, 'start' => $out_stayDate));
+    $datetime = new DateTime($out_addDate);
+
+    array_push($temp, array('title' => $out_num, "description" => $datetime->format('H:i:s d-m-Y'), 'start' => $out_stayDate));
 }
 
 if (!empty($temp)) {
     echo json_encode($temp);
-} 
-else {
+} else {
     echo "json is empty";
 }
 

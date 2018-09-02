@@ -599,6 +599,7 @@ temporary rendered events).
   /* default TEXT color */
   text-decoration: none;
   /* if <a> has an href */
+  cursor: default;
 }
 
 /* line 529, ../scss/customFullcalendar.scss */

@@ -524,6 +524,7 @@ temporary rendered events).
 .ui-widget .fc-event {
 	color: #fff; /* default TEXT color */
 	text-decoration: none; /* if <a> has an href */
+	cursor: default;
 }
 
 .fc-event[href],
