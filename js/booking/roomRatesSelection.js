@@ -19,10 +19,9 @@ function RoomRatesSelection() {
         numSelectedRooms = dateSelection.getNumSelectedRooms();
         // clear selected rooms and prices of recently transaction
         sidebar.clearSelectedRoomsShow();
-        // stay date array
-        generateStayDates();
-        // import data from database
-        importRoomModel();
+        stayDates = dateSelection.get_stay_dates();
+        roomModels = dateSelection.get_room_models();
+        showAvailRoomModels();
         // clear selected rooms out
         selectedRooms = [];
         // start to select room type for the first room
@@ -37,50 +36,7 @@ function RoomRatesSelection() {
         $('.tabs-content section.content').removeClass("active");
         $('#selectedRoomsRates-tab').addClass("active");
     };
-    var generateStayDates = function () {
-        // clear the array of staying dates
-        stayDates = [];
-        // define the interval of staying dates
-        var curSelectDate = $('#arriv-input').datepicker("getDate"),
-            endSelectDate = $('#depar-input').datepicker("getDate");
-        // create a loop between the interval
-        while (curSelectDate < endSelectDate) {
-            // add it (as string) on array
-            stayDates.push(convertDateObjToDateFormat(curSelectDate));
-            // add one day
-            curSelectDate = curSelectDate.addDays(1);
-        }
-        // error handling
-        if (stayDates.length <= 0) {
-            showErrorReveal("stayDates variable is null");
-        }
-    };
-    var importRoomModel = function () {
-        roomModels = [];
-        startLoadingAni();
-        $.ajax({
-            type: "POST",
-            url: phpUrl + "booking/roomModelsRetriever.php",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({
-                "start": stayDates[0],
-                "end": stayDates[stayDates.length - 1]
-            }),
-            success: function (data) {
-                if (isJson(data)) {
-                    $.each(jQuery.parseJSON(data), function (i, room) {
-                        roomModels.push(new RoomModel(parseInt(room["num"]), room["type"], parseInt(room["curPrice"]), room["brief"]));
-                    });
-                    // show / update available room models after import it
-                    showAvailRoomModels();
-                }
-                else {
-                    showErrorReveal(data);
-                }
-                stopLoadingAni();
-            }
-        });
-    };
+
     var showAvailRoomModels = function () {
         // clear all and add legend at first
         $('#roomTypes-fieldset').html('<legend>เลือกหมายเลขห้อง</legend>');

@@ -1,5 +1,7 @@
 function DateSelection() {
     var numSelectedRooms = 0;
+    var roomModels;
+    var stayDates;
     this.getNumSelectedRooms = function () {
         return numSelectedRooms;
     };
@@ -13,6 +15,8 @@ function DateSelection() {
                 min.setDate(min.getDate() + 1);
                 $('#depar-input').datepicker("option", "minDate", min).datepicker("setDate", min);
                 showNumDates();
+                stayDates = generateStayDates();
+                roomModels = importRoomModel();
             }
         });
         $('#depar-input').datepicker({
@@ -21,6 +25,8 @@ function DateSelection() {
                 max.setDate(max.getDate() - 1);
                 $('#arriv-input').datepicker("option", "maxDate", max);
                 showNumDates();
+                stayDates = generateStayDates();
+                roomModels = importRoomModel();
             }
         });
         $("#arriv-butt").click(function () {
@@ -30,6 +36,55 @@ function DateSelection() {
             $('#depar-input').datepicker("show");
         });
     };
+    var generateStayDates = function () {
+        // clear the array of staying dates
+        stayDates = [];
+        // define the interval of staying dates
+        var curSelectDate = $('#arriv-input').datepicker("getDate"),
+            endSelectDate = $('#depar-input').datepicker("getDate");
+        // create a loop between the interval
+        while (curSelectDate < endSelectDate) {
+            // add it (as string) on array
+            stayDates.push(convertDateObjToDateFormat(curSelectDate));
+            // add one day
+            curSelectDate = curSelectDate.addDays(1);
+        }
+        // error handling
+        if (stayDates.length <= 0) {
+            showErrorReveal("stayDates variable is null");
+        }
+
+        return stayDates;
+    };
+    var importRoomModel = function () {
+        roomModels = [];
+        startLoadingAni();
+        $.ajax({
+            type: "POST",
+            url: phpUrl + "booking/roomModelsRetriever.php",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "start": stayDates[0],
+                "end": stayDates[stayDates.length - 1]
+            }),
+            success: function (data) {
+                if (isJson(data)) {
+                    $.each(jQuery.parseJSON(data), function (i, room) {
+                        roomModels.push(new RoomModel(parseInt(room["num"]), room["type"], parseInt(room["curPrice"]), room["brief"]));
+                    });
+                    // show / update available room models after import it
+                    // showAvailRoomModels();
+                    get_ava_num_rooms();
+                }
+                else {
+                    showErrorReveal(data);
+                }
+                stopLoadingAni();
+            }
+        });
+
+        return roomModels;
+    };
     var showNumDates = function () {
         var arr = $('#arriv-input').datepicker("getDate");
         var dep = $('#depar-input').datepicker("getDate");
@@ -38,6 +93,18 @@ function DateSelection() {
         }
         else {
             $('#numDates-dateSelection').html("");
+        }
+    };
+    var get_ava_num_rooms = function () {
+        $('#numRooms-select-row').hide();
+        $('#numRooms-select').html('');
+
+        if (roomModels.length > 0) {
+            $('#numRooms-select-row').show();
+            for (var i = 1; i <= roomModels.length; i++) {
+                $('#numRooms-select').append('<option value="' + i + '">' + i + '</option>')
+            }
+            $('#numRooms-select option[value="1"]').attr( 'selected', true ).change();
         }
     };
     this.createRoomsGuestsSelector = function () {
@@ -143,4 +210,10 @@ function DateSelection() {
             roomRatesSelection.initialise();
         });
     };
+    this.get_room_models = function () {
+        return roomModels;
+    };
+    this.get_stay_dates = function () {
+        return stayDates;
+    }
 }

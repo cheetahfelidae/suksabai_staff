@@ -136,7 +136,7 @@ if (session_id() == '') {
                                 </fieldset>
                             </div>
                         </div>
-                        <div class="row collapse" id="numRooms-select-row">
+                        <div class="row collapse" id="numRooms-select-row" hidden>
                             <div class="small-12 columns">
                                 <fieldset>
                                     <legend>เลือกจำนวนของห้อง & ผู้เข้าพัก</legend>
@@ -144,16 +144,6 @@ if (session_id() == '') {
                                         <div class="small-3 columns">
                                             <label class="text-center">ห้อง
                                                 <select id="numRooms-select">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
                                                 </select>
                                             </label>
                                         </div>
