@@ -63,8 +63,8 @@ function getBooking( month, year ) {
         url: alt_phpUrl + "monthlyFinance/monthlyFinance.php",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify( {
-            "start": convertDateObjToDateFormat( startDay ),
-            "end": convertDateObjToDateFormat( endDay )
+            "start": date_obj_to_yy_mm_dd( startDay ),
+            "end": date_obj_to_yy_mm_dd( endDay )
         } ),
         success: function( data ) {
             if ( isJson( data ) ) {

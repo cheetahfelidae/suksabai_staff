@@ -119,7 +119,7 @@ function GuestForm() {
         }
         $( '#firstName-guest-form-tab' ).val( data[ 'firstName' ] );
         $( '#lastName-guest-form-tab' ).val( data[ 'lastName' ] );
-        $( '#email-guest-form-tab' ).val( data[ 'email' ] )
+        $( '#email-guest-form-tab' ).val( data[ 'email' ] );
         $( '#tel-guest-form-tab' ).val( data[ 'tel' ] );
         $( '#address-guest-form-tab' ).val( data[ 'address' ] );
         /************************ province ************************/

@@ -3,10 +3,10 @@ function RoomRatesSelection() {
     var typeClick;
     var iterRoomCount;
     var roomModels;
-    var stayDates;
+    var checkinDates;
     var selectedRooms;
     this.getStayDates = function () {
-        return stayDates;
+        return checkinDates;
     };
     this.getSelectedRooms = function () {
         return selectedRooms;
@@ -19,7 +19,7 @@ function RoomRatesSelection() {
         numSelectedRooms = dateSelection.getNumSelectedRooms();
         // clear selected rooms and prices of recently transaction
         sidebar.clearSelectedRoomsShow();
-        stayDates = dateSelection.get_stay_dates();
+        checkinDates = dateSelection.get_check_in_dates();
         roomModels = dateSelection.get_room_models();
         showAvailRoomModels();
         // clear selected rooms out
@@ -126,7 +126,7 @@ function RoomRatesSelection() {
         }
     };
     var showSelectedRoomsRatesBreadcrumbs = function () {
-        $('#breadcrumbs-selectedRoomsRates').text("เลือกประเภทห้องที่ " + ( iterRoomCount + 1 ) + ' จาก ' + numSelectedRooms);
+        $('#breadcrumbs-selectedRoomsRates').text("เลือกประเภทห้องที่ " + (iterRoomCount + 1) + ' จาก ' + numSelectedRooms);
         $('#breadcrumbs-selectedRoomsRates-panel').stop(false, true).effect('highlight', {
             color: '#f2c922'
         }, 3000);
@@ -159,18 +159,17 @@ function RoomRatesSelection() {
     var selectRoom = function (type) {
         // start loading animation
         startLoadingAni();
-        var numAd = parseInt($('#selectedRoomsGuests-list > .row:nth-child(' + ( iterRoomCount + 2 ) + ') > .columns:nth-child(2) option:selected').text()),
-            numCh = parseInt($('#selectedRoomsGuests-list > .row:nth-child(' + ( iterRoomCount + 2 ) + ') > .columns:nth-child(3) option:selected').text()),
+        var numAd = parseInt($('#selectedRoomsGuests-list > .row:nth-child(' + (iterRoomCount + 2) + ') > .columns:nth-child(2) option:selected').text()),
+            numCh = parseInt($('#selectedRoomsGuests-list > .row:nth-child(' + (iterRoomCount + 2) + ') > .columns:nth-child(3) option:selected').text()),
             num = parseInt($('input:radio[name="roomNo-radio"]:checked').val()),
             price = parseInt($('#roomType' + type + '-price').val()),
             breakfastPrice = BREAKFAST_PRICE * parseInt($('#roomType' + type + '-breakfastBed-check option:selected').text()),
             extraBedPrice = $('#roomType' + type + '-extraBed-check').is(':checked') ? EXTRA_BED_PRICE : 0,
-            checkinTime = $('#arriv-time-input').val();
+            checkinDate = date_obj_to_yy_mm_dd($('#arriv-input').datepicker("getDate")),
+            checkinTime = $('#arriv-time-input').val(),
+            checkoutDate = date_obj_to_yy_mm_dd($('#depar-input').datepicker("getDate"));
 
-        // create rooms ( up to the number of night )
-        $.each(stayDates, function (i, date) {
-            selectedRooms.push(new SelectRoom(num, type, price, numAd, numCh, breakfastPrice, extraBedPrice, date, checkinTime));
-        });
+        selectedRooms.push(new SelectRoom(num, type, price, numAd, numCh, breakfastPrice, extraBedPrice, checkinDate, checkinTime, checkoutDate));
         console.log(selectedRooms);
         rmvRoomModelByNum(num);
 

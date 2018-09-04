@@ -1,7 +1,7 @@
 function DateSelection() {
     var numSelectedRooms = 0;
     var roomModels;
-    var stayDates;
+    var checkinDates;
     this.getNumSelectedRooms = function () {
         return numSelectedRooms;
     };
@@ -11,7 +11,7 @@ function DateSelection() {
 
         if (arr && dep) {
             $('#numDates-dateSelection').html("จำนวนคืนที่พัก : " + getNumDates(arr, dep) + " คืน");
-            stayDates = generateStayDates();
+            checkinDates = generateStayDates();
             roomModels = importRoomModel();
         } else {
             $('#numDates-dateSelection').html("");
@@ -51,25 +51,25 @@ function DateSelection() {
             $('#depar-input').datepicker("show");
         });
     };
-    var generateStayDates = function () {
+    var generateStayDates = function () { // TODO - to be removed
         // clear the array of staying dates
-        stayDates = [];
+        checkinDates = [];
         // define the interval of staying dates
         var curSelectDate = $('#arriv-input').datepicker("getDate"),
             endSelectDate = $('#depar-input').datepicker("getDate");
         // create a loop between the interval
         while (curSelectDate < endSelectDate) {
             // add it (as string) on array
-            stayDates.push(convertDateObjToDateFormat(curSelectDate));
+            checkinDates.push(date_obj_to_yy_mm_dd(curSelectDate));
             // add one day
             curSelectDate = curSelectDate.addDays(1);
         }
         // error handling
-        if (stayDates.length <= 0) {
-            showErrorReveal("stayDates variable is null");
+        if (checkinDates.length <= 0) {
+            showErrorReveal("checkinDates variable is null");
         }
 
-        return stayDates;
+        return checkinDates;
     };
     var importRoomModel = function () {
         roomModels = [];
@@ -79,16 +79,14 @@ function DateSelection() {
             url: phpUrl + "booking/roomModelsRetriever.php",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-                "start": stayDates[0],
-                "end": stayDates[stayDates.length - 1]
+                "start": checkinDates[0],
+                "end": checkinDates[checkinDates.length - 1]
             }),
             success: function (data) {
                 if (isJson(data)) {
                     $.each(jQuery.parseJSON(data), function (i, room) {
                         roomModels.push(new RoomModel(parseInt(room["num"]), room["type"], parseInt(room["curPrice"]), room["brief"]));
                     });
-                    // show / update available room models after import it
-                    // showAvailRoomModels();
                     get_ava_num_rooms();
                 }
                 else {
@@ -126,7 +124,8 @@ function DateSelection() {
                                                             </div>\
                                                         </div>');
             // add them
-            for (var i = 0; i < numSelectedRooms; i++) $('#selectedRoomsGuests-list').append('<div class="row">\
+            for (var i = 0; i < numSelectedRooms; i++) {
+                $('#selectedRoomsGuests-list').append('<div class="row">\
                                                             <div class="small-4 columns">\
                                                                 <label class="text-center inline">ห้อง ' + (i + 1) + '</label>\
                                                             </div>\
@@ -148,6 +147,7 @@ function DateSelection() {
                                                                 </select>\
                                                             </div>\
                                                         </div>');
+            }
         });
         $('#numRooms-select').trigger('change');
     };
@@ -220,7 +220,7 @@ function DateSelection() {
     this.get_room_models = function () {
         return roomModels;
     };
-    this.get_stay_dates = function () {
-        return stayDates;
+    this.get_check_in_dates = function () {
+        return checkinDates;
     }
 }

@@ -8,7 +8,7 @@ $dates = json_decode(file_get_contents('php://input'), true);
 /* Prepared statement, stage 1: prepare */
 if (!($stmt = $mysqli->prepare("SELECT EV_R_MODELS.num, EV_R_MODELS.type, EV_R_MODELS.curPrice, EV_R_MODELS.brief
         FROM (SELECT num, type, curPrice, brief FROM RoomModels) AS EV_R_MODELS
-        LEFT JOIN (SELECT roomNum, stayDate FROM Bookings WHERE stayDate >= ? AND stayDate <= ?) AS B_REQ_NIGHTS
+        LEFT JOIN (SELECT roomNum, checkinDate FROM Bookings WHERE checkinDate >= ? AND checkinDate <= ?) AS B_REQ_NIGHTS
         ON EV_R_MODELS.num = B_REQ_NIGHTS.roomNum WHERE B_REQ_NIGHTS.roomNum IS NULL 
         ORDER BY EV_R_MODELS.type, EV_R_MODELS.num"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;

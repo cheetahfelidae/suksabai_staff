@@ -28,7 +28,7 @@ function Guest(id, title, firstName, lastName, tel, address, district, amphur, p
     this.otherDetails = "";
 }
 
-function SelectRoom(num, type, price, numAdults, numChildren, breakfastPrice, extraBedPrice, stayDate, checkinTime) {
+function SelectRoom(num, type, price, numAdults, numChildren, breakfastPrice, extraBedPrice, checkinDate, checkinTime, checkoutDate) {
     this.num = num;
     this.type = type;
     this.price = price;
@@ -36,8 +36,9 @@ function SelectRoom(num, type, price, numAdults, numChildren, breakfastPrice, ex
     this.numChildren = numChildren;
     this.breakfastPrice = breakfastPrice;
     this.extraBedPrice = extraBedPrice;
-    this.stayDate = stayDate;
+    this.checkinDate = checkinDate;
     this.checkinTime = checkinTime;
+    this.checkoutDate = checkoutDate;
 }
 
 function RoomModel(num, type, curPrice, brief) {
@@ -116,14 +117,6 @@ function Sidebar() {
                                                     </div>\
                                                 </div>');
                 }
-                // show text if number of stay dates are more than one
-                if (numStayDates > 1) {
-                    $('#selectedRooms-list-fieldset').append('<div class="row collapse">\
-                                                    <div class="small-12 columns">\
-                                                        <p class="text-left noBottomMargin" style="font-weight: bold;">คืนที่ ' + ((i % numStayDates) + 1) + ' / ' + numStayDates + '</p>\
-                                                    </div>\
-                                                </div>');
-                }
                 $('#selectedRooms-list-fieldset').append('<div class="row collapse">\
                                                     <div class="small-3 columns">\
                                                         <label class="text-center inline noBottomMargin">' + selectedRooms[i].type + ' ' + selectedRooms[i].num + '</label>\
@@ -169,7 +162,7 @@ function Sidebar() {
         var total = 0;
         var selectedRooms = roomRatesSelection.getSelectedRooms();
         for (var i = 0; i < selectedRooms.length; i++) {
-            total += selectedRooms[i].price;
+            total += selectedRooms[i].price * getNumDates($('#arriv-input').datepicker("getDate"), $('#depar-input').datepicker("getDate"));
             total += selectedRooms[i].breakfastPrice;
             total += selectedRooms[i].extraBedPrice;
         }

@@ -6,7 +6,7 @@ connDB();
 $dates = json_decode(file_get_contents('php://input'), true);
 
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $mysqli->prepare("SELECT stayDate, roomNum, roomPrice, breakfastPrice, extraBedPrice  FROM Bookings WHERE stayDate >= ? AND stayDate <= ? ORDER BY stayDate, roomNum"))) {
+if (!($stmt = $mysqli->prepare("SELECT checkinDate, roomNum, roomPrice, breakfastPrice, extraBedPrice  FROM Bookings WHERE checkinDate >= ? AND checkinDate <= ? ORDER BY checkinDate, roomNum"))) {
     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
@@ -22,19 +22,19 @@ if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 
-$out_stayDate = NULL;
+$out_checkinDate = NULL;
 $out_roomNum = NULL;
 $out_roomPrice = NULL;
 $out_breakfastPrice = NULL;
 $out_extraBedPrice = NULL;
-if (!$stmt->bind_result($out_stayDate, $out_roomNum, $out_roomPrice, $out_breakfastPrice, $out_extraBedPrice)) {
+if (!$stmt->bind_result($out_checkinDate, $out_roomNum, $out_roomPrice, $out_breakfastPrice, $out_extraBedPrice)) {
     echo "Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 
 $temp = array();
 
 while ($stmt->fetch()) {
-    array_push($temp, array('stayDate' => $out_stayDate, 'roomNums' => $out_roomNum, 'roomPrice' => $out_roomPrice, 'breakfastPrice' => $out_breakfastPrice, 'extraBedPrice' => $out_extraBedPrice));
+    array_push($temp, array('checkinDate' => $out_checkinDate, 'roomNums' => $out_roomNum, 'roomPrice' => $out_roomPrice, 'breakfastPrice' => $out_breakfastPrice, 'extraBedPrice' => $out_extraBedPrice));
 }
 
 if (!empty($temp)) {

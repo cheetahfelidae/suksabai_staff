@@ -68,15 +68,18 @@ function Confirmation() {
         selectedRooms = roomRatesSelection.getSelectedRooms();
         var sumRoomPrice = 0,
             sumBreakfastPrice = 0,
-            sumExtraBedPrice = 0;
+            sumExtraBedPrice = 0,
+            num_dates = getNumDates($('#arriv-input').datepicker("getDate"), $('#depar-input').datepicker("getDate"));
+
         for (var i = 0; i < selectedRooms.length; i++) {
             if (typeof selectedRooms[i].type !== 'undefined') {
                 $('#stayList-receipt').append('<tr>\
-                                    <td class="text-center">' + $.datepicker.formatDate("dd/mm/yy", convertDateFormatToDateObj(selectedRooms[i].stayDate)) + '</td>\
+                                    <td class="text-center">' + yy_mm_dd_to_dd_mm_yy(selectedRooms[i].checkinDate) + '</td>\
+                                    <td class="text-center">' + yy_mm_dd_to_dd_mm_yy(selectedRooms[i].checkoutDate) + '</td>\
                                     <td class="text-center">ห้อง ' + selectedRooms[i].num + '</td>\
                                     <td class="text-center">฿' + selectedRooms[i].price + '</td>\
                                 </tr>');
-                sumRoomPrice += selectedRooms[i].price;
+                sumRoomPrice += selectedRooms[i].price * num_dates;
                 // show breakfast price
                 if (selectedRooms[i].breakfastPrice > 0) {
                     $('#stayList-receipt').append('<tr>\
@@ -84,7 +87,7 @@ function Confirmation() {
                                     <td class="text-center">อาหารเช้า</td>\
                                     <td class="text-center">฿' + selectedRooms[i].breakfastPrice + ' (จำนวน ' + (selectedRooms[i].breakfastPrice / BREAKFAST_PRICE) + ' ที่)</td>\
                                 </tr>');
-                    sumBreakfastPrice += selectedRooms[i].breakfastPrice;
+                    sumBreakfastPrice += selectedRooms[i].breakfastPrice * num_dates;
                 }
                 // show extra bed price
                 if (selectedRooms[i].extraBedPrice > 0) {
@@ -93,7 +96,7 @@ function Confirmation() {
                                     <td class="text-center">เตียงเสริม</td>\
                                     <td class="text-center">฿' + selectedRooms[i].extraBedPrice + '</td>\
                                 </tr>');
-                    sumExtraBedPrice += selectedRooms[i].extraBedPrice;
+                    sumExtraBedPrice += selectedRooms[i].extraBedPrice * num_dates;
                 }
             }
             else {
@@ -109,8 +112,8 @@ function Confirmation() {
             $('#sumExtraBedPrice-receipt').html('ราคารวมเตียงเสริม : ฿' + sumExtraBedPrice);
         }
         $('#total-receipt').html('ราคารวมสุทธิ : ฿' + (sumRoomPrice + sumBreakfastPrice + sumExtraBedPrice));
-        $('#checkInDate-receipt').html($('#arriv-time-input').val() + ' &nbsp; ' + $('#arriv-input').val()); // TODO - use selectedRooms var instead?
-        $('#checkOutDate-receipt').html($('#depar-time-input').val() + ' &nbsp; ' + $('#depar-input').val());
+        $('#checkInDate-receipt').html($('#arriv-time-input').val() + ' &nbsp; ' + date_obj_to_dd_mm_yy($('#arriv-input').datepicker("getDate")));
+        $('#checkOutDate-receipt').html($('#depar-time-input').val() + ' &nbsp; ' + date_obj_to_dd_mm_yy($('#depar-input').datepicker("getDate")));
     };
     this.createBackButt = function () {
         $('#back-toEntGuDetailsTab').click((function () {

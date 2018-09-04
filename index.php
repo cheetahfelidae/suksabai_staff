@@ -679,7 +679,8 @@ if (session_id() == '') {
         <table class="noBottomMargin noBorder">
             <thead>
             <tr>
-                <th class="text-center">คืนที่พัก</th>
+                <th class="text-center">เข้าพัก</th>
+                <th class="text-center">เดินทางออก</th>
                 <th class="text-center" width="33%">รายการ</th>
                 <th class="text-center" width="33%">ราคา</th>
             </tr>

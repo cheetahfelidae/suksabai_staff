@@ -65,7 +65,7 @@ function FinanceTable() {
         $( '#monthlyFinance-outerTable, #summary-outerTable' ).empty();
         // create booking rows
         $.each( data, function( i, booking ) {
-            cmpDate = booking[ "stayDate" ];
+            cmpDate = booking[ "checkinDate" ];
             roomNum = booking[ "roomNums" ];
             roomPrice = booking[ "roomPrice" ];
             breakfastPrice = booking[ "breakfastPrice" ];
