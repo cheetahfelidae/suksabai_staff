@@ -602,7 +602,7 @@ if (session_id() == '') {
         <h2 id="back-toSelectedRoomsRatesTitle" class="withWarningColor"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;
             ยืนยันการดำเนินการ</h2>
         <p class="lead">การดำเนินการมีผลทำให้ห้องทั้งหมดที่ได้เลือกไว้ และข้อมูลลูกค้าที่ได้กรอกจะหายไป</p>
-        <p>กดปุ่ม "ตกลง" เพื่อย้อนกลับไปหน้าเดิม หรือกดปุ่มกากบาทเพื่ออยู่หน้านี้</p>
+        <p>กดปุ่ม "ย้อนกลับ" เพื่อย้อนกลับไปหน้าเดิม หรือกดปุ่มกากบาทเพื่ออยู่หน้านี้</p>
         <a class="button" role="button" id="back-toSelectedRoomsRates-butt"><i class="fa fa-chevron-left fa-lg"></i>&nbsp;
             ย้อนกลับ</a>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
