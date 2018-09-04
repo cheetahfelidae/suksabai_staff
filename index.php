@@ -34,6 +34,8 @@ if (session_id() == '') {
     <link rel="stylesheet" href="guest-liveSearch/css/fontello.css">
     <link rel="stylesheet" href="guest-liveSearch/css/animation.css">
     <link rel="stylesheet" type="text/css" href="guest-liveSearch/css/customStyle.css">
+    <!-- DatetimePicker -->
+    <link rel="stylesheet" type="text/css" href="datetimepicker-master/jquery.datetimepicker.css">
 </head>
 <body>
 <div class="hide-for-print">
@@ -117,6 +119,17 @@ if (session_id() == '') {
                                         </div>
                                     </div>
                                     <div class="row collapse">
+                                        <div class="small-10 columns">
+                                            <input type="text" id="arriv-time-input"
+                                                   placeholder="คลิกปุ่มขวาเพื่อเลือกเวลาเข้าพัก" required/>
+                                            <small class="error">กรุณาระบุเวลาเข้าพัก</small>
+                                        </div>
+                                        <div class="small-2 columns">
+                                            <a role="button" tabindex="0" id="arriv-time-butt"
+                                               class="button noPadding postfix"><i class="fa fa-clock-o fa-lg"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="row collapse">
                                         <label for="depar-input">เดินทางออก</label>
                                         <div class="small-10 columns">
                                             <input type="text" id="depar-input"
@@ -126,6 +139,17 @@ if (session_id() == '') {
                                         <div class="small-2 columns">
                                             <a role="button" tabindex="0" id="depar-butt"
                                                class="button noPadding postfix"><i class="fa fa-calendar"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="row collapse">
+                                        <div class="small-10 columns">
+                                            <input type="text" id="depar-time-input"
+                                                   placeholder="คลิกปุ่มขวาเพื่อเลือกเวลาเข้าพัก" value="12:00" disabled/>
+                                            <small class="error">กรุณาระบุเวลาเดินทางออก</small>
+                                        </div>
+                                        <div class="small-2 columns">
+                                            <a role="button" tabindex="0" id="depar-time-butt"
+                                               class="button noPadding postfix" disabled><i class="fa fa-clock-o fa-lg"></i></a>
                                         </div>
                                     </div>
                                     <div class="row collapse">
@@ -568,9 +592,9 @@ if (session_id() == '') {
     <div id="noRoomAvail-reveal" class="reveal-modal small" data-reveal aria-labelledby="noRoomAvail-title"
          aria-hidden="true" role="dialog">
         <h2 id="noRoomAvail-title" class="withWarningColor">ไม่มีห้องพักว่าง</h2>
-        <p class="lead">ไม่มีห้องพักเหลืออในช่วงวันที่เข้าพักที่เลือก</p>
-        <p>กรุณากดปุ่ม "ย้อนกลับ" เพื่อย้อนกลับไปหน้าเดิม เพื่อเลือกช่วงวันที่เข้าพักอีกรอบ</p>
-        <a class="button reloadPage-butt" role="button"><i class="fa fa-chevron-left fa-lg"></i>&nbsp; ย้อนกลับ</a>
+        <p class="lead">ไม่มีห้องพักว่างในช่วงวันที่เข้าพักที่เลือก</p>
+        <p>กรุณาเลือกช่วงวันที่เข้าพักอีกครั้ง</p>
+        <a class="button reloadPage-butt right" role="button">ตกลง</a>
     </div>
     <!-- back to select rooms & rates -->
     <div id="back-toRoomsRatesSelection-reveal" class="reveal-modal small" data-reveal
@@ -626,9 +650,8 @@ if (session_id() == '') {
     </div>
     <div class="panel noBottomMargin noLeftRightBorder">
         <ul class="no-bullet text-center">
-            <li><i class="fa fa-map-marker fa-lg"></i>&nbsp; สุขสบายรีสอร์ท 399</li>
-            <li>วังสามหมอ อุดรธานี 41280</li>
-            <li><i class="fa fa-mobile fa-lg"></i>&nbsp; 082-4394839 (คุณดา)</li>
+            <li><i class="fa fa-map-marker fa-lg"></i>&nbsp; สุขสบายรีสอร์ท 399 วังสามหมอ อุดรธานี 41280</li>
+            <li><i class="fa fa-mobile fa-lg"></i>&nbsp; 099-3046694</li>
             <li><i class="fa fa-mobile fa-lg"></i>&nbsp; 081-6709417 (คุณตุ๊)</li>
             <li><i class="fa fa-phone fa-lg"></i>&nbsp; 042-387612 (ร้านณัฐสันต์ยนต์)</li>
         </ul>
@@ -657,8 +680,8 @@ if (session_id() == '') {
             <thead>
             <tr>
                 <th class="text-center">คืนที่พัก</th>
-                <th class="text-center">รายการ</th>
-                <th class="text-center">ราคา</th>
+                <th class="text-center" width="33%">รายการ</th>
+                <th class="text-center" width="33%">ราคา</th>
             </tr>
             </thead>
             <tbody id="stayList-receipt">
@@ -723,5 +746,7 @@ if (session_id() == '') {
 <script src="bower_components/fullcalendar/dist/lang/th.js"></script>
 <!-- Live Search Script -->
 <script type="text/javascript" src="guest-liveSearch/js/booking.js"></script>
+<!-- DatetimePicker -->
+<script src="datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 </body>
 </html>

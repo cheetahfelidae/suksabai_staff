@@ -36,21 +36,19 @@ function RoomRatesSelection() {
         $('.tabs-content section.content').removeClass("active");
         $('#selectedRoomsRates-tab').addClass("active");
     };
-
     var showAvailRoomModels = function () {
         // clear all and add legend at first
         $('#roomTypes-fieldset').html('<legend>เลือกหมายเลขห้อง</legend>');
-        // if there are enough rooms left, then show available rooms
-        if (( numSelectedRooms - selectedRooms.length ) <= roomModels.length) {
-            var curType = "";
-            var countRooms = 0;
-            for (var i = 0; i < roomModels.length; i++) {
-                var type = roomModels[i].type;
-                // create new price table for each room type
-                if (curType.localeCompare(type) !== 0) {
-                    curType = type;
-                    countRooms = 0;
-                    $('#roomTypes-fieldset').append('<div class="row collapse">\
+
+        var curType = "";
+        var countRooms = 0;
+        for (var i = 0; i < roomModels.length; i++) {
+            var type = roomModels[i].type;
+            // create new price table for each room type
+            if (curType.localeCompare(type) !== 0) {
+                curType = type;
+                countRooms = 0;
+                $('#roomTypes-fieldset').append('<div class="row collapse">\
                                         <div class="small-12 columns">\
                                             <ul class="pricing-table">\
                                                 <li class="title">ห้องประเภท ' + curType + '</li>\
@@ -103,33 +101,28 @@ function RoomRatesSelection() {
                                             </ul>\
                                         </div>\
                                     </div>');
-                }
-                var roomNo = roomModels[i].num;
-                switch (countRooms % 3) {
-                    case 0:
-                        $('#type' + curType + 'List-stCol').append('<li>\
-                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
-                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
-                                                    </li>');
-                        break;
-                    case 1:
-                        $('#type' + curType + 'List-ndCol').append('<li>\
-                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
-                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
-                                                    </li>');
-                        break;
-                    case 2:
-                        $('#type' + curType + 'List-rdCol').append('<li>\
-                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
-                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
-                                                    </li>');
-                }
-                countRooms++;
             }
-        }
-        else {
-            // ask user to move back to select date again
-            $('#noRoomAvail-reveal').foundation('reveal', 'open');
+            var roomNo = roomModels[i].num;
+            switch (countRooms % 3) {
+                case 0:
+                    $('#type' + curType + 'List-stCol').append('<li>\
+                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
+                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
+                                                    </li>');
+                    break;
+                case 1:
+                    $('#type' + curType + 'List-ndCol').append('<li>\
+                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
+                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
+                                                    </li>');
+                    break;
+                case 2:
+                    $('#type' + curType + 'List-rdCol').append('<li>\
+                                                        <input type="radio" name="roomNo-radio" value="' + roomNo + '" id="room' + roomNo + '" required >\
+                                                        <label for="room' + roomNo + '">ห้อง ' + roomNo + '</label>\
+                                                    </li>');
+            }
+            countRooms++;
         }
     };
     var showSelectedRoomsRatesBreadcrumbs = function () {
@@ -171,11 +164,12 @@ function RoomRatesSelection() {
             num = parseInt($('input:radio[name="roomNo-radio"]:checked').val()),
             price = parseInt($('#roomType' + type + '-price').val()),
             breakfastPrice = BREAKFAST_PRICE * parseInt($('#roomType' + type + '-breakfastBed-check option:selected').text()),
-            extraBedPrice = $('#roomType' + type + '-extraBed-check').is(':checked') ? EXTRA_BED_PRICE : 0;
+            extraBedPrice = $('#roomType' + type + '-extraBed-check').is(':checked') ? EXTRA_BED_PRICE : 0,
+            checkinTime = $('#arriv-time-input').val();
 
         // create rooms ( up to the number of night )
         $.each(stayDates, function (i, date) {
-            selectedRooms.push(new SelectRoom(num, type, price, numAd, numCh, breakfastPrice, extraBedPrice, date));
+            selectedRooms.push(new SelectRoom(num, type, price, numAd, numCh, breakfastPrice, extraBedPrice, date, checkinTime));
         });
         console.log(selectedRooms);
         rmvRoomModelByNum(num);

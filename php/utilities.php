@@ -2,10 +2,10 @@
 
 function addRooms($mysqli, $selectedRooms, $guestID)
 {
-    if (!($stmt = $mysqli->prepare("INSERT INTO Bookings (roomNum, roomPrice, numAdults, numChildren, breakfastPrice, extraBedPrice, stayDate, guestID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))) {
+    if (!($stmt = $mysqli->prepare("INSERT INTO Bookings (roomNum, roomPrice, numAdults, numChildren, breakfastPrice, extraBedPrice, stayDate, checkinTime, guestID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
         echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }
-    if (!$stmt->bind_param("iiiiiisi", $roomNum, $roomPrice, $numAdults, $numChildren, $breakfastPrice, $extraBedPrice, $stayDate, $guestID)) {
+    if (!$stmt->bind_param("iiiiiissi", $roomNum, $roomPrice, $numAdults, $numChildren, $breakfastPrice, $extraBedPrice, $stayDate, $checkinTime, $guestID)) {
         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     }
 
@@ -19,6 +19,7 @@ function addRooms($mysqli, $selectedRooms, $guestID)
         $breakfastPrice = $room["breakfastPrice"];
         $extraBedPrice = $room["extraBedPrice"];
         $stayDate = $room["stayDate"];
+        $checkinTime = $room["checkinTime"];
 //      $guestID = $latestID;
 
         if (!$stmt->execute()) {

@@ -5,6 +5,18 @@ function DateSelection() {
     this.getNumSelectedRooms = function () {
         return numSelectedRooms;
     };
+    var after_select_date_period = function () {
+        var arr = $('#arriv-input').datepicker("getDate");
+        var dep = $('#depar-input').datepicker("getDate");
+
+        if (arr && dep) {
+            $('#numDates-dateSelection').html("จำนวนคืนที่พัก : " + getNumDates(arr, dep) + " คืน");
+            stayDates = generateStayDates();
+            roomModels = importRoomModel();
+        } else {
+            $('#numDates-dateSelection').html("");
+        }
+    };
     this.createArrivDeparSelector = function () {
         $.datepicker.setDefaults({
             dateFormat: "DD d MM yy"
@@ -14,23 +26,26 @@ function DateSelection() {
                 var min = $('#arriv-input').datepicker('getDate');
                 min.setDate(min.getDate() + 1);
                 $('#depar-input').datepicker("option", "minDate", min).datepicker("setDate", min);
-                showNumDates();
-                stayDates = generateStayDates();
-                roomModels = importRoomModel();
+                after_select_date_period();
             }
+        });
+        $('#arriv-time-input').datetimepicker({
+            datepicker: false,
+            format: 'H:i'
         });
         $('#depar-input').datepicker({
             onSelect: function (selectedDate) {
                 var max = $('#depar-input').datepicker('getDate');
                 max.setDate(max.getDate() - 1);
                 $('#arriv-input').datepicker("option", "maxDate", max);
-                showNumDates();
-                stayDates = generateStayDates();
-                roomModels = importRoomModel();
+                after_select_date_period();
             }
         });
         $("#arriv-butt").click(function () {
             $('#arriv-input').datepicker("show");
+        });
+        $('#arriv-time-butt').click(function () {
+            $('#arriv-time-input').datetimepicker("show");
         });
         $("#depar-butt").click(function () {
             $('#depar-input').datepicker("show");
@@ -85,16 +100,6 @@ function DateSelection() {
 
         return roomModels;
     };
-    var showNumDates = function () {
-        var arr = $('#arriv-input').datepicker("getDate");
-        var dep = $('#depar-input').datepicker("getDate");
-        if (arr !== null && dep !== null) {
-            $('#numDates-dateSelection').html("จำนวนคืนที่พัก : " + getNumDates(arr, dep) + " คืน");
-        }
-        else {
-            $('#numDates-dateSelection').html("");
-        }
-    };
     var get_ava_num_rooms = function () {
         $('#numRooms-select-row').hide();
         $('#numRooms-select').html('');
@@ -104,7 +109,9 @@ function DateSelection() {
             for (var i = 1; i <= roomModels.length; i++) {
                 $('#numRooms-select').append('<option value="' + i + '">' + i + '</option>')
             }
-            $('#numRooms-select option[value="1"]').attr( 'selected', true ).change();
+            $('#numRooms-select option[value="1"]').attr('selected', true).change();
+        } else {
+            $('#noRoomAvail-reveal').foundation('reveal', 'open');
         }
     };
     this.createRoomsGuestsSelector = function () {
@@ -152,7 +159,7 @@ function DateSelection() {
             eventRender: function (eventObj, $el) {
                 $el.popover({
                     title: "ห้อง " + eventObj.title,
-                    content: "วันเวลาจอง : " + eventObj.description,
+                    content: "เข้าพักเวลา : " + eventObj.checkinTime + "\r\n\t\nวันเวลาจอง : " + eventObj.addDate,
                     trigger: 'hover',
                     placement: 'top',
                     container: 'body'
@@ -204,9 +211,9 @@ function DateSelection() {
             // show these elements
             $('#breadcrumbs-selectedRoomsRates-row, #selectedRooms-list-row, #totalPrice-row').show();
             // disable arrive / depart text-input
-            $('#arriv-input, #depar-input').attr("disabled", "disabled");
+            $('#arriv-input, #arriv-time-input, #depar-input').attr("disabled", "disabled");
             // hide these elements
-            $('#numRooms-select-row, #arriv-butt, #depar-butt').hide();
+            $('#numRooms-select-row, #arriv-butt, #arriv-time-butt, #depar-butt').hide();
             roomRatesSelection.initialise();
         });
     };
