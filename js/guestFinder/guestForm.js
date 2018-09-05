@@ -44,7 +44,7 @@ function Form() {
     var initialiseForm = function() {
         // initialise variables
         guest = {};
-        guestID = 0;
+        // guestID = -1;
         tempFirst = "";
         tempLast = "";
         // disable form
@@ -72,7 +72,7 @@ function Form() {
             province = $( "#province option:selected" ).text(),
             taxNumber = $( '#taxNumber' ).val(),
             otherDetails = $( '#otherDetails' ).val();
-        guest = new Guest( guestID, title, firstName, lastName, tel, address, district, amphur, province );
+        guest = new Guest( title, firstName, lastName, tel, address, district, amphur, province );
         if ( email.length > 0 ) {
             guest.email = email;
         }

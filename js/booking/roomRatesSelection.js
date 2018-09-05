@@ -170,7 +170,6 @@ function RoomRatesSelection() {
             checkoutDate = date_obj_to_yy_mm_dd($('#depar-input').datepicker("getDate"));
 
         selectedRooms.push(new SelectRoom(num, type, price, numAd, numCh, breakfastPrice, extraBedPrice, checkinDate, checkinTime, checkoutDate));
-        console.log(selectedRooms);
         rmvRoomModelByNum(num);
 
         // move to either next rooms or enter guest's details

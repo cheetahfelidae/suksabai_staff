@@ -213,7 +213,7 @@ function DateSelection() {
             // disable arrive / depart text-input
             $('#arriv-input, #arriv-time-input, #depar-input').attr("disabled", "disabled");
             // hide these elements
-            $('#numRooms-select-row, #arriv-butt, #arriv-time-butt, #depar-butt').hide();
+            $('#numRooms-select-row, #arriv-butt, #arriv-time-butt, #depar-butt, #depar-time-butt').hide();
             roomRatesSelection.initialise();
         });
     };

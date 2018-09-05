@@ -10,8 +10,8 @@ var BREAKFAST_PRICE = 100;
 var EXTRA_BED_PRICE = 150;
 
 // classes
-function Guest(id, title, firstName, lastName, tel, address, district, amphur, province) {
-    this.id = id;
+function Guest(title, firstName, lastName, tel, address, district, amphur, province) {
+    this.id = 0;
     this.title = title;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -66,6 +66,7 @@ $(document).ready(function () {
     guestForm = new GuestForm();
     guestForm.createNextButt();
     guestForm.createBackButt();
+    guestForm.create_skip_butt();
     guestForm.createResetButt();
     guestForm.createEditableFormButt();
     // confirmation

@@ -1,14 +1,24 @@
 function Confirmation() {
     var guest;
-    var guestID;
     var selectedRooms;
-    this.initialise = function () {
+    this.initialise = function (no_guest) {
         // auto scroll to top left of page
         window.scrollTo(0, 0);
+
         guest = guestForm.getGuest();
-        guestID = guest.id;
-        $('#formLegend-confirmation-tab').html(guestID === 0 ? '(ผู้พักใหม่)' : '(ผู้พักเก่า)');
-        createReceipt();
+        if (no_guest) {
+            guest.id = -1;
+        }
+        createReceipt(no_guest);
+
+        if (guest.id === 0) {
+            $('#formLegend-confirmation-tab').html('(ผู้พักเก่า)');
+        } else if (guest.id === -1) {
+            $('#formLegend-confirmation-tab').html('(ไม่มีข้อมูลผู้พัก');
+        } else {
+            $('#formLegend-confirmation-tab').html('(ผู้พักใหม่)');
+        }
+
         // target breadcrumb is switched
         $('.custom-breadcrumb a').removeClass('active');
         $('#confirmation-tab-breadcrumb').addClass('active');
@@ -19,11 +29,20 @@ function Confirmation() {
     this.createConfirmButt = function () {
         $('#confirm-butt').click(function () {
             startLoadingAni();
-            console.log(selectedRooms);
+
+            URL = phpUrl;
+            if (guest.id === 0) {
+                URL += "booking/booking-storedGuest.php";
+            } else if (guest.id === -1) {
+                URL += "booking/booking_no_guest";
+            } else {
+                URL += "booking/booking-newGuest.php";
+            }
+
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
-                url: phpUrl + (guestID === 0 ? "booking/booking-newGuest.php" : "booking/booking-storedGuest.php"),
+                url: URL,
                 data: JSON.stringify({
                     "guest": guest,
                     "selectedRooms": selectedRooms
@@ -41,28 +60,31 @@ function Confirmation() {
             });
         });
     };
-    var createReceipt = function () {
-        $('#name-confirmation-tab').val(guest.title + " " + guest.firstName + " " + guest.lastName);
-        $('#name-receipt').html(guest.title + " " + guest.firstName + " " + guest.lastName);
-        $('#email-confirmation-tab').val(guest.email);
-        $('#email-receipt').html(guest.email);
-        $('#tel-confirmation-tab').val(guest.tel);
-        $('#tel-receipt').html(guest.tel);
-        $('#address-confirmation-tab').val(guest.address + " " + guest.district + " " + guest.amphur + " " + guest.province);
-        $('#address-receipt').html(guest.address + " " + guest.district + " " + guest.amphur + " " + guest.province);
-        // check if taxNumber is specified
-        if ((guest.taxNumber).length > 0) {
-            $('#taxNumber-confirmation-tab').val(guest.taxNumber);
-            $('#taxCaption-receipt').html('หมายเลขประจำตัวผู้เสียภาษีอากร :');
-            $('#taxNumber-receipt').html(guest.taxNumber);
+    var createReceipt = function (noGuest) {
+        if (!noGuest) {
+            $('#name-confirmation-tab').val(guest.title + " " + guest.firstName + " " + guest.lastName);
+            $('#name-receipt').html(guest.title + " " + guest.firstName + " " + guest.lastName);
+            $('#email-confirmation-tab').val(guest.email);
+            $('#email-receipt').html(guest.email);
+            $('#tel-confirmation-tab').val(guest.tel);
+            $('#tel-receipt').html(guest.tel);
+            $('#address-confirmation-tab').val(guest.address + " " + guest.district + " " + guest.amphur + " " + guest.province);
+            $('#address-receipt').html(guest.address + " " + guest.district + " " + guest.amphur + " " + guest.province);
+            // check if taxNumber is specified
+            if ((guest.taxNumber).length > 0) {
+                $('#taxNumber-confirmation-tab').val(guest.taxNumber);
+                $('#taxCaption-receipt').html('หมายเลขประจำตัวผู้เสียภาษีอากร :');
+                $('#taxNumber-receipt').html(guest.taxNumber);
+            }
+            else {
+                $('#taxNumber-confirmation-tab').val('');
+                $('#taxCaption-receipt').html('');
+                $('#taxNumber-receipt').html('');
+            }
+            // check if other details are specified
+            (guest.otherDetails.length === 0) ? $('#otherDetails-confirmation-tab').val("ไม่มีข้อมูลอื่นๆ..") : $('#otherDetails-confirmation-tab').val(guest.otherDetails);
         }
-        else {
-            $('#taxNumber-confirmation-tab').val('');
-            $('#taxCaption-receipt').html('');
-            $('#taxNumber-receipt').html('');
-        }
-        // check if other details are specified
-        (guest.otherDetails.length === 0) ? $('#otherDetails-confirmation-tab').val("ไม่มีข้อมูลอื่นๆ..") : $('#otherDetails-confirmation-tab').val(guest.otherDetails);
+
         $('#printTimeDate-receipt').html(clock.getTimeDate());
         $('#stayList-receipt').empty();
         selectedRooms = roomRatesSelection.getSelectedRooms();

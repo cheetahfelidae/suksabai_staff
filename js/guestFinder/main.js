@@ -1,5 +1,5 @@
-function Guest( id, title, firstName, lastName, tel, address, district, amphur, province ) {
-    this.id = id;
+function Guest( title, firstName, lastName, tel, address, district, amphur, province ) {
+    this.id = 0;
     this.title = title;
     this.firstName = firstName;
     this.lastName = lastName;

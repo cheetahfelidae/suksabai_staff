@@ -473,11 +473,17 @@ if (session_id() == '') {
                                 </div>
                             </div>
                             <div class="row collapse">
-                                <div class="small-12 columns">
-                                    <button type="button" class="noBottomMargin withTopMargin left"
+                                <div class="small-3 columns">
+                                    <button type="button" class="noBottomMargin withTopMargin"
                                             data-reveal-id="back-toRoomsRatesSelection-reveal"><i
                                                 class="fa fa-chevron-left fa-lg"></i>&nbsp; ก่อนหน้า
                                     </button>
+                                </div>
+                                <div class="small-3 columns medium-offset-3">
+                                    <button type="button" form="guest-form" data-reveal-id="skip-toConfirmation-reveal" class="warning noBottomMargin withTopMargin right">
+                                        ข้าม &nbsp;<i class="fa fa-forward fa-lg"></i></button>
+                                </div>
+                                <div class="small-3 columns">
                                     <button type="submit" form="guest-form" class="noBottomMargin withTopMargin right">
                                         ต่อไป &nbsp;<i class="fa fa-chevron-right fa-lg"></i></button>
                                 </div>
@@ -605,6 +611,17 @@ if (session_id() == '') {
         <p>กดปุ่ม "ย้อนกลับ" เพื่อย้อนกลับไปหน้าเดิม หรือกดปุ่มกากบาทเพื่ออยู่หน้านี้</p>
         <a class="button" role="button" id="back-toSelectedRoomsRates-butt"><i class="fa fa-chevron-left fa-lg"></i>&nbsp;
             ย้อนกลับ</a>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+    <!-- skip to confirmation -->
+    <div id="skip-toConfirmation-reveal" class="reveal-modal small" data-reveal
+         aria-labelledby="back-toSelectedRoomsRatesTitle" aria-hidden="true" role="dialog">
+        <h2 id="back-toSelectedRoomsRatesTitle" class="withWarningColor"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;
+            ยืนยันการดำเนินการ</h2>
+        <p class="lead">การดำเนินการมีผลทำให้ห้องทั้งหมดที่ได้เลือกไว้ และข้อมูลลูกค้าที่ได้กรอกจะหายไป</p>
+        <p>กดปุ่ม "ตกลง" เพื่อดำเนินการต่อ หรือกดปุ่มกากบาทเพื่ออยู่หน้านี้</p>
+        <a class="button right" role="button" id="skip-toConfirmation-butt"><i class="fa fa-chevron-right fa-lg"></i>&nbsp;
+            ต่อไป</a>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
     <!-- booking into database successfully -->
