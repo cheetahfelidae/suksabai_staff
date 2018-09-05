@@ -67,8 +67,8 @@ function GuestForm() {
         tempLast = "";
         // make form editable
         enableForm();
-        // all fields
-        resetForm( $( '#guest-form' ) );
+        // clear all fields
+        $( '#guest-form' ).trigger("reset");
         // create title field
         createTitleField();
         // province

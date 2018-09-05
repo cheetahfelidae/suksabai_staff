@@ -49,8 +49,8 @@ function Form() {
         tempLast = "";
         // disable form
         disableForm();
-        // all fields
-        resetForm( $( '#guest-form' ) );
+        // clear all fields
+        $( '#guest-form' ).trigger("reset");
         // create title field
         createTitleField();
         // amphur
