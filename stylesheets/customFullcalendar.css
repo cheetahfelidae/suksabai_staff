@@ -602,21 +602,21 @@ temporary rendered events).
   cursor: default;
 }
 
-/* line 529, ../scss/customFullcalendar.scss */
+/* line 530, ../scss/customFullcalendar.scss */
 .fc-event[href],
 .fc-event.fc-draggable {
   cursor: pointer;
   /* give events with links and draggable events a hand mouse pointer */
 }
 
-/* line 534, ../scss/customFullcalendar.scss */
+/* line 535, ../scss/customFullcalendar.scss */
 .fc-not-allowed,
 .fc-not-allowed .fc-event {
   /* to override an event's custom cursor */
   cursor: not-allowed;
 }
 
-/* line 539, ../scss/customFullcalendar.scss */
+/* line 540, ../scss/customFullcalendar.scss */
 .fc-event .fc-bg {
   /* the generic .fc-bg already does position */
   z-index: 1;
@@ -626,13 +626,13 @@ temporary rendered events).
   /* for IE */
 }
 
-/* line 546, ../scss/customFullcalendar.scss */
+/* line 547, ../scss/customFullcalendar.scss */
 .fc-event .fc-content {
   position: relative;
   z-index: 2;
 }
 
-/* line 551, ../scss/customFullcalendar.scss */
+/* line 552, ../scss/customFullcalendar.scss */
 .fc-event .fc-resizer {
   position: absolute;
   z-index: 3;
@@ -641,7 +641,7 @@ temporary rendered events).
 /* Horizontal Events
 --------------------------------------------------------------------------------------------------*/
 /* events that are continuing to/from another week. kill rounded corners and butt up against edge */
-/* line 562, ../scss/customFullcalendar.scss */
+/* line 563, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-h-event.fc-not-start,
 .fc-rtl .fc-h-event.fc-not-end {
   margin-left: 0;
@@ -652,7 +652,7 @@ temporary rendered events).
   border-bottom-left-radius: 0;
 }
 
-/* line 571, ../scss/customFullcalendar.scss */
+/* line 572, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-h-event.fc-not-end,
 .fc-rtl .fc-h-event.fc-not-start {
   margin-right: 0;
@@ -664,7 +664,7 @@ temporary rendered events).
 }
 
 /* resizer */
-/* line 582, ../scss/customFullcalendar.scss */
+/* line 583, ../scss/customFullcalendar.scss */
 .fc-h-event .fc-resizer {
   /* positioned it to overcome the event's borders */
   top: -1px;
@@ -675,7 +675,7 @@ temporary rendered events).
 }
 
 /* left resizer  */
-/* line 591, ../scss/customFullcalendar.scss */
+/* line 592, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-h-event .fc-start-resizer,
 .fc-ltr .fc-h-event .fc-start-resizer:before,
 .fc-ltr .fc-h-event .fc-start-resizer:after,
@@ -688,7 +688,7 @@ temporary rendered events).
 }
 
 /* right resizer */
-/* line 602, ../scss/customFullcalendar.scss */
+/* line 603, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-h-event .fc-end-resizer,
 .fc-ltr .fc-h-event .fc-end-resizer:before,
 .fc-ltr .fc-h-event .fc-end-resizer:after,
@@ -705,26 +705,26 @@ temporary rendered events).
 We use the full "fc-day-grid-event" class instead of using descendants because the event won't
 be a descendant of the grid when it is being dragged.
 */
-/* line 619, ../scss/customFullcalendar.scss */
+/* line 620, ../scss/customFullcalendar.scss */
 .fc-day-grid-event {
   margin: 1px 2px 0;
   /* spacing between events and edges */
   padding: 0 1px;
 }
 
-/* line 625, ../scss/customFullcalendar.scss */
+/* line 626, ../scss/customFullcalendar.scss */
 .fc-day-grid-event .fc-content {
   /* force events to be one-line tall */
   white-space: nowrap;
   overflow: hidden;
 }
 
-/* line 630, ../scss/customFullcalendar.scss */
+/* line 631, ../scss/customFullcalendar.scss */
 .fc-day-grid-event .fc-time {
   font-weight: bold;
 }
 
-/* line 634, ../scss/customFullcalendar.scss */
+/* line 635, ../scss/customFullcalendar.scss */
 .fc-day-grid-event .fc-resizer {
   /* enlarge the default hit area */
   left: -3px;
@@ -735,7 +735,7 @@ be a descendant of the grid when it is being dragged.
 /* Event Limiting
 --------------------------------------------------------------------------------------------------*/
 /* "more" link that represents hidden events */
-/* line 646, ../scss/customFullcalendar.scss */
+/* line 647, ../scss/customFullcalendar.scss */
 a.fc-more {
   margin: 1px 3px;
   font-size: .85em;
@@ -743,38 +743,38 @@ a.fc-more {
   text-decoration: none;
 }
 
-/* line 653, ../scss/customFullcalendar.scss */
+/* line 654, ../scss/customFullcalendar.scss */
 a.fc-more:hover {
   text-decoration: underline;
 }
 
-/* line 657, ../scss/customFullcalendar.scss */
+/* line 658, ../scss/customFullcalendar.scss */
 .fc-limited {
   /* rows and cells that are hidden because of a "more" link */
   display: none;
 }
 
 /* popover that appears when "more" link is clicked */
-/* line 663, ../scss/customFullcalendar.scss */
+/* line 664, ../scss/customFullcalendar.scss */
 .fc-day-grid .fc-row {
   z-index: 1;
   /* make the "more" popover one higher than this */
 }
 
-/* line 667, ../scss/customFullcalendar.scss */
+/* line 668, ../scss/customFullcalendar.scss */
 .fc-more-popover {
   z-index: 2;
   width: 220px;
 }
 
-/* line 672, ../scss/customFullcalendar.scss */
+/* line 673, ../scss/customFullcalendar.scss */
 .fc-more-popover .fc-event-container {
   padding: 10px;
 }
 
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
-/* line 678, ../scss/customFullcalendar.scss */
+/* line 679, ../scss/customFullcalendar.scss */
 .fc-toolbar {
   display: none;
 }
@@ -783,7 +783,7 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 /* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
 /* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
-/* line 746, ../scss/customFullcalendar.scss */
+/* line 747, ../scss/customFullcalendar.scss */
 .fc-view-container *,
 .fc-view-container *:before,
 .fc-view-container *:after {
@@ -792,7 +792,7 @@ a.fc-more:hover {
   box-sizing: content-box;
 }
 
-/* line 754, ../scss/customFullcalendar.scss */
+/* line 755, ../scss/customFullcalendar.scss */
 .fc-view,
 .fc-view > table {
   /* so dragged elements can be above the view's main element */
@@ -803,7 +803,7 @@ a.fc-more:hover {
 /* BasicView
 --------------------------------------------------------------------------------------------------*/
 /* day row structure */
-/* line 765, ../scss/customFullcalendar.scss */
+/* line 766, ../scss/customFullcalendar.scss */
 .fc-basicWeek-view .fc-content-skeleton,
 .fc-basicDay-view .fc-content-skeleton {
   /* we are sure there are no day numbers in these views, so... */
@@ -813,19 +813,19 @@ a.fc-more:hover {
   /* ensure a space at bottom of cell for user selecting/clicking */
 }
 
-/* line 772, ../scss/customFullcalendar.scss */
+/* line 773, ../scss/customFullcalendar.scss */
 .fc-basic-view .fc-body .fc-row {
   min-height: 4em;
   /* ensure that all rows are at least this tall */
 }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
-/* line 778, ../scss/customFullcalendar.scss */
+/* line 779, ../scss/customFullcalendar.scss */
 .fc-row.fc-rigid {
   overflow: hidden;
 }
 
-/* line 782, ../scss/customFullcalendar.scss */
+/* line 783, ../scss/customFullcalendar.scss */
 .fc-row.fc-rigid .fc-content-skeleton {
   position: absolute;
   top: 0;
@@ -834,42 +834,42 @@ a.fc-more:hover {
 }
 
 /* week and day number styling */
-/* line 791, ../scss/customFullcalendar.scss */
+/* line 792, ../scss/customFullcalendar.scss */
 .fc-basic-view .fc-week-number,
 .fc-basic-view .fc-day-number {
   padding: 0 2px;
 }
 
-/* line 796, ../scss/customFullcalendar.scss */
+/* line 797, ../scss/customFullcalendar.scss */
 .fc-basic-view td.fc-week-number span,
 .fc-basic-view td.fc-day-number {
   padding-top: 2px;
   padding-bottom: 2px;
 }
 
-/* line 802, ../scss/customFullcalendar.scss */
+/* line 803, ../scss/customFullcalendar.scss */
 .fc-basic-view .fc-week-number {
   text-align: center;
 }
 
-/* line 806, ../scss/customFullcalendar.scss */
+/* line 807, ../scss/customFullcalendar.scss */
 .fc-basic-view .fc-week-number span {
   /* work around the way we do column resizing and ensure a minimum width */
   display: inline-block;
   min-width: 1.25em;
 }
 
-/* line 812, ../scss/customFullcalendar.scss */
+/* line 813, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-basic-view .fc-day-number {
   text-align: right;
 }
 
-/* line 816, ../scss/customFullcalendar.scss */
+/* line 817, ../scss/customFullcalendar.scss */
 .fc-rtl .fc-basic-view .fc-day-number {
   text-align: left;
 }
 
-/* line 820, ../scss/customFullcalendar.scss */
+/* line 821, ../scss/customFullcalendar.scss */
 .fc-day-number.fc-other-month {
   opacity: 0.3;
   filter: alpha(opacity=30);
@@ -881,20 +881,20 @@ a.fc-more:hover {
 
 /* AgendaView all-day area
 --------------------------------------------------------------------------------------------------*/
-/* line 831, ../scss/customFullcalendar.scss */
+/* line 832, ../scss/customFullcalendar.scss */
 .fc-agenda-view .fc-day-grid {
   position: relative;
   z-index: 2;
   /* so the "more.." popover will be over the time grid */
 }
 
-/* line 836, ../scss/customFullcalendar.scss */
+/* line 837, ../scss/customFullcalendar.scss */
 .fc-agenda-view .fc-day-grid .fc-row {
   min-height: 3em;
   /* all-day section will never get shorter than this */
 }
 
-/* line 840, ../scss/customFullcalendar.scss */
+/* line 841, ../scss/customFullcalendar.scss */
 .fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
   padding-top: 1px;
   /* add a pixel to make sure there are 2px padding above events */
@@ -904,7 +904,7 @@ a.fc-more:hover {
 
 /* TimeGrid axis running down the side (for both the all-day area and the slot area)
 --------------------------------------------------------------------------------------------------*/
-/* line 849, ../scss/customFullcalendar.scss */
+/* line 850, ../scss/customFullcalendar.scss */
 .fc .fc-axis {
   /* .fc to overcome default cell styles */
   vertical-align: middle;
@@ -912,17 +912,17 @@ a.fc-more:hover {
   white-space: nowrap;
 }
 
-/* line 855, ../scss/customFullcalendar.scss */
+/* line 856, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-axis {
   text-align: right;
 }
 
-/* line 859, ../scss/customFullcalendar.scss */
+/* line 860, ../scss/customFullcalendar.scss */
 .fc-rtl .fc-axis {
   text-align: left;
 }
 
-/* line 863, ../scss/customFullcalendar.scss */
+/* line 864, ../scss/customFullcalendar.scss */
 .ui-widget td.fc-axis {
   font-weight: normal;
   /* overcome jqui theme making it bold */
@@ -930,7 +930,7 @@ a.fc-more:hover {
 
 /* TimeGrid Structure
 --------------------------------------------------------------------------------------------------*/
-/* line 871, ../scss/customFullcalendar.scss */
+/* line 872, ../scss/customFullcalendar.scss */
 .fc-time-grid-container,
 .fc-time-grid {
   /* so slats/bg/content/etc positions get scoped within here */
@@ -938,24 +938,24 @@ a.fc-more:hover {
   z-index: 1;
 }
 
-/* line 877, ../scss/customFullcalendar.scss */
+/* line 878, ../scss/customFullcalendar.scss */
 .fc-time-grid {
   min-height: 100%;
   /* so if height setting is 'auto', .fc-bg stretches to fill height */
 }
 
-/* line 881, ../scss/customFullcalendar.scss */
+/* line 882, ../scss/customFullcalendar.scss */
 .fc-time-grid table {
   /* don't put outer borders on slats/bg/content/etc */
   border: 0 hidden transparent;
 }
 
-/* line 885, ../scss/customFullcalendar.scss */
+/* line 886, ../scss/customFullcalendar.scss */
 .fc-time-grid > .fc-bg {
   z-index: 1;
 }
 
-/* line 889, ../scss/customFullcalendar.scss */
+/* line 890, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-slats,
 .fc-time-grid > hr {
   /* the <hr> AgendaView injects when grid is shorter than scroller */
@@ -963,7 +963,7 @@ a.fc-more:hover {
   z-index: 2;
 }
 
-/* line 895, ../scss/customFullcalendar.scss */
+/* line 896, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-bgevent-skeleton,
 .fc-time-grid .fc-content-skeleton {
   position: absolute;
@@ -972,41 +972,41 @@ a.fc-more:hover {
   right: 0;
 }
 
-/* line 903, ../scss/customFullcalendar.scss */
+/* line 904, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-bgevent-skeleton {
   z-index: 3;
 }
 
-/* line 907, ../scss/customFullcalendar.scss */
+/* line 908, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-highlight-skeleton {
   z-index: 4;
 }
 
-/* line 911, ../scss/customFullcalendar.scss */
+/* line 912, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-content-skeleton {
   z-index: 5;
 }
 
-/* line 915, ../scss/customFullcalendar.scss */
+/* line 916, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-helper-skeleton {
   z-index: 6;
 }
 
 /* TimeGrid Slats (lines that run horizontally)
 --------------------------------------------------------------------------------------------------*/
-/* line 923, ../scss/customFullcalendar.scss */
+/* line 924, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-slats td {
   height: 1.5em;
   border-bottom: 0;
   /* each cell is responsible for its top border */
 }
 
-/* line 928, ../scss/customFullcalendar.scss */
+/* line 929, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-slats .fc-minor td {
   border-top-style: dotted;
 }
 
-/* line 932, ../scss/customFullcalendar.scss */
+/* line 933, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-slats .ui-widget-content {
   /* for jqui theme */
   background: none;
@@ -1015,14 +1015,14 @@ a.fc-more:hover {
 
 /* TimeGrid Highlighting Slots
 --------------------------------------------------------------------------------------------------*/
-/* line 940, ../scss/customFullcalendar.scss */
+/* line 941, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-highlight-container {
   /* a div within a cell within the fc-highlight-skeleton */
   position: relative;
   /* scopes the left/right of the fc-highlight to be in the column */
 }
 
-/* line 944, ../scss/customFullcalendar.scss */
+/* line 945, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-highlight {
   position: absolute;
   left: 0;
@@ -1032,26 +1032,26 @@ a.fc-more:hover {
 
 /* TimeGrid Event Containment
 --------------------------------------------------------------------------------------------------*/
-/* line 955, ../scss/customFullcalendar.scss */
+/* line 956, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-event-container,
 .fc-time-grid .fc-bgevent-container {
   /* a div within a cell within the fc-bgevent-skeleton */
   position: relative;
 }
 
-/* line 960, ../scss/customFullcalendar.scss */
+/* line 961, ../scss/customFullcalendar.scss */
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
   margin: 0 2.5% 0 2px;
 }
 
-/* line 964, ../scss/customFullcalendar.scss */
+/* line 965, ../scss/customFullcalendar.scss */
 .fc-rtl .fc-time-grid .fc-event-container {
   /* space on the sides of events for RTL */
   margin: 0 2px 0 2.5%;
 }
 
-/* line 968, ../scss/customFullcalendar.scss */
+/* line 969, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-event,
 .fc-time-grid .fc-bgevent {
   position: absolute;
@@ -1059,7 +1059,7 @@ a.fc-more:hover {
   /* scope inner z-index's */
 }
 
-/* line 974, ../scss/customFullcalendar.scss */
+/* line 975, ../scss/customFullcalendar.scss */
 .fc-time-grid .fc-bgevent {
   /* background events always span full width */
   left: 0;
@@ -1068,7 +1068,7 @@ a.fc-more:hover {
 
 /* Generic Vertical Event
 --------------------------------------------------------------------------------------------------*/
-/* line 984, ../scss/customFullcalendar.scss */
+/* line 985, ../scss/customFullcalendar.scss */
 .fc-v-event.fc-not-start {
   /* events that are continuing from another day */
   /* replace space made by the top border with padding */
@@ -1079,7 +1079,7 @@ a.fc-more:hover {
   border-top-right-radius: 0;
 }
 
-/* line 994, ../scss/customFullcalendar.scss */
+/* line 995, ../scss/customFullcalendar.scss */
 .fc-v-event.fc-not-end {
   /* replace space made by the top border with padding */
   border-bottom-width: 0;
@@ -1094,32 +1094,32 @@ a.fc-more:hover {
 We use the full "fc-time-grid-event" class instead of using descendants because the event won't
 be a descendant of the grid when it is being dragged.
 */
-/* line 1011, ../scss/customFullcalendar.scss */
+/* line 1012, ../scss/customFullcalendar.scss */
 .fc-time-grid-event {
   overflow: hidden;
   /* don't let the bg flow over rounded corners */
 }
 
-/* line 1015, ../scss/customFullcalendar.scss */
+/* line 1016, ../scss/customFullcalendar.scss */
 .fc-time-grid-event .fc-time,
 .fc-time-grid-event .fc-title {
   padding: 0 1px;
 }
 
-/* line 1020, ../scss/customFullcalendar.scss */
+/* line 1021, ../scss/customFullcalendar.scss */
 .fc-time-grid-event .fc-time {
   font-size: .85em;
   white-space: nowrap;
 }
 
 /* short mode, where time and title are on the same line */
-/* line 1027, ../scss/customFullcalendar.scss */
+/* line 1028, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-content {
   /* don't wrap to second line (now that contents will be inline) */
   white-space: nowrap;
 }
 
-/* line 1032, ../scss/customFullcalendar.scss */
+/* line 1033, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-time,
 .fc-time-grid-event.fc-short .fc-title {
   /* put the time and title on the same line */
@@ -1127,25 +1127,25 @@ be a descendant of the grid when it is being dragged.
   vertical-align: top;
 }
 
-/* line 1039, ../scss/customFullcalendar.scss */
+/* line 1040, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-time span {
   display: none;
   /* don't display the full time text... */
 }
 
-/* line 1043, ../scss/customFullcalendar.scss */
+/* line 1044, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-time:before {
   content: attr(data-start);
   /* ...instead, display only the start time */
 }
 
-/* line 1047, ../scss/customFullcalendar.scss */
+/* line 1048, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-time:after {
   content: "\000A0-\000A0";
   /* seperate with a dash, wrapped in nbsp's */
 }
 
-/* line 1051, ../scss/customFullcalendar.scss */
+/* line 1052, ../scss/customFullcalendar.scss */
 .fc-time-grid-event.fc-short .fc-title {
   font-size: .85em;
   /* make the title text the same size as the time */
@@ -1154,7 +1154,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 /* resizer */
-/* line 1058, ../scss/customFullcalendar.scss */
+/* line 1059, ../scss/customFullcalendar.scss */
 .fc-time-grid-event .fc-resizer {
   left: 0;
   right: 0;
@@ -1167,7 +1167,7 @@ be a descendant of the grid when it is being dragged.
   cursor: s-resize;
 }
 
-/* line 1071, ../scss/customFullcalendar.scss */
+/* line 1072, ../scss/customFullcalendar.scss */
 .fc-time-grid-event .fc-resizer:after {
   content: "=";
 }
